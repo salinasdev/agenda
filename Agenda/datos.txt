@@ -1,0 +1,3 @@
+Esta version es la mas simple.
+index.php que redirecciona a controller y este a su vez a principal
+ademas hacemos una pequeña prueba de la session

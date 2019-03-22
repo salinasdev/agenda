@@ -1,0 +1,59 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	background-color: #99F;
+}
+#contenedor #cuerpo form {
+	width: 480px;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+}
+#contenedor {
+	width: 800px;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+}
+#contenedor #header {
+	background-image: url(img/header.jpg);
+	height: 100px;
+	width: 800px;
+}
+#contenedor #pie {
+	background-image: url(img/pie.jpg);
+	height: 30px;
+	width: 800px;
+}
+form fieldset legend {
+	background-image: url(img/ico.png);
+	background-repeat:no-repeat;
+	font-size: 20px;
+	color: #C4C4FF;
+	font-weight: bold;
+}
+form label {
+	background-color: #003;
+	font-size: 18px;
+	color: #C4C4FF;
+	font-weight: bold;
+}
+form input {
+	font-size: 18px;
+	font-weight: bold;
+	color: #003;
+}
+img {
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+}
+
+
+#cuerpo {
+	background-color: #015DAA;
+}
