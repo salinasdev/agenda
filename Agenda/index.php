@@ -5,9 +5,9 @@
 require_once ("controller.php");
 
 // route the request internally
-$uri = $_SERVER['REQUEST_URI'];
+$uri = $_SERVER['REQUEST_URI'] ?? null;
 //echo $uri;
-if ($uri == '/lore2/index.php') {
+if ($uri == '/Agenda/index.php') {
 	$c = new Controller(); //Instanciamos Controller
 	$c->inicio(); //Llamamos a su metodo inicio();
 }

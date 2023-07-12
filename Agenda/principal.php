@@ -43,8 +43,8 @@ ini_set('display_errors', '1');
   <div id="cuerpo">
 <?php
 $c = new Controller(); //Instanciamos Controller
-$reg = $_SESSION["reg"];
-$amigos = $_SESSION["amigos"];
+$reg = $_SESSION["reg"] ?? null;;
+$amigos = $_SESSION["amigos"] ?? null;;
 ?>
 
 <form id="fagenda" name="fagenda" method="post" action="controller.php?op=guardar">
@@ -53,22 +53,22 @@ $amigos = $_SESSION["amigos"];
 <table width="40%" border="0" align="center">
   <tr>
     <td><label>IdAmigo:</label></td>
-    <td><input name="txtId" type="text" size="5" readonly="readonly" value="<?php print($amigos[$reg]["id"]);?>"/></td>
+    <td><input name="txtId" type="text" size="5" readonly="readonly" value="<?php print($amigos[$reg]["id"])?? null;?>"/></td>
     <td><a href="javascript:pedirbuscar()"><img src="img/buscar.gif" width="46" height="46" /></a></td>
   </tr>
   <tr>
     <td><label>Nombre: </label></td>
-    <td><input name="txtNombre" type="text" size="30"  value="<?php print($amigos[$reg]["name"]);?>"/></td>
+    <td><input name="txtNombre" type="text" size="30"  value="<?php print($amigos[$reg]["name"])?? null;?>"/></td>
     <td><a href="javascript:ir('nuevo.php',500,200)"><img src="img/nuevo.gif" width="46" height="46" /></a></td>
   </tr>
   <tr>
     <td><label>Telefono:</label></td>
-    <td><input name="txtTelefono" type="text" size="12"  value="<?php print($amigos[$reg]["tlf"]);?>"/></td>
-    <td><a href="javascript:confirmar('<?=$amigos[$reg]['name']?>','<?=$amigos[$reg]['id']?>')"><img src="img/borrar.gif" width="46" height="46" /></a></td>
+    <td><input name="txtTelefono" type="text" size="12"  value="<?php print($amigos[$reg]["tlf"])?? null;?>"/></td>
+    <td><a href="javascript:confirmar('<?=$amigos[$reg]['name']?? null;?>','<?=$amigos[$reg]['id']?? null;?>')"><img src="img/borrar.gif" width="46" height="46" /></a></td>
   </tr>
   <tr>
     <td><label>Email: </label></td>
-    <td><input name="txtEmail" type="text" size="30"  value="<?php print($amigos[$reg]["email"]);?>"/></td>
+    <td><input name="txtEmail" type="text" size="30"  value="<?php print($amigos[$reg]["email"])?? null;?>"/></td>
     <td><img src="img/guardar.gif" width="46" height="46" onclick="document.fagenda.submit()"/></td>
   </tr>
   <tr>

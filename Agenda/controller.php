@@ -3,7 +3,7 @@
 require_once("entidades/personal.php");
 session_start(); //iniciamos la session
 
-$op=$_REQUEST['op'];
+$op=$_REQUEST['op'] ?? null;
 if( isset ($op)){
 $c = new Controller(); //Instanciamos Controller
 	if($op=="siguiente"){		
@@ -31,18 +31,21 @@ class Controller{
 	{
 		$pers = new Personal(); 
 		$_SESSION["reg"] = 0;
-		$_SESSION["amigos"] = $pers->get_personal();
-		header("Location: /alumnos/principal.php"); //Redireccionamos a principal.php
+		$_SESSION["amigos"] = $pers->get_personal() ?? null;
+		header("Location: /Agenda/principal.php"); //Redireccionamos a principal.php
 		exit(); //Salimos
 	}
 
 	function arriba()
 	{
-		$amigos = $_SESSION["amigos"];
+		$amigos = $_SESSION["amigos"] ?? null;
+		if (is_countable($amigos) && count($amigos) > 0){
 		if($_SESSION["reg"]<(sizeof($amigos))-1){
 			$_SESSION["reg"]++;			
 		}
-		header("Location: /alumnos/principal.php"); //Redireccionamos a principal.php
+		}
+		header("Location: /Agenda/principal.php"); //Redireccionamos a principal.php
+		
 	}
 	
 	function abajo()
@@ -50,18 +53,18 @@ class Controller{
 		if($_SESSION["reg"]>0){
 			$_SESSION["reg"]--;			
 		}
-		header("Location: /alumnos/principal.php"); //Redireccionamos a principal.php
+		header("Location: /Agenda/principal.php"); //Redireccionamos a principal.php
 	}
 	
 	function primero(){
 		$_SESSION["reg"]=0;
-		header("Location: /alumnos/principal.php"); //Redireccionamos a principal.php
+		header("Location: /Agenda/principal.php"); //Redireccionamos a principal.php
 	}
 	
 	function ultimo(){
-		$amigos = $_SESSION["amigos"];
+		$amigos = $_SESSION["amigos"] ?? null;
 		$_SESSION["reg"]=sizeof($amigos)-1;
-		header("Location: /alumnos/principal.php"); //Redireccionamos a principal.php
+		header("Location: /Agenda/principal.php"); //Redireccionamos a principal.php
 	}
 	
 	function nuevo(){
@@ -74,7 +77,7 @@ class Controller{
 		$pers->set_personal($name,$tlf,$email);
 		//Recogemos los amigos (ahora estara el nuevo)
 		$_SESSION["amigos"] = $pers->get_personal();
-		$amigos = $_SESSION["amigos"];
+		$amigos = $_SESSION["amigos"] ?? null;;
 		//Colocamos el cursor en el ultimo para visualizarlo
 		$_SESSION["reg"]=sizeof($amigos)-1;
 		
@@ -86,22 +89,22 @@ class Controller{
 		<?php
 	}
 	function buscar(){
-		$name=$_REQUEST['nombre'];
-		$amigos = $_SESSION["amigos"];
+		$name=$_REQUEST['nombre']?? null;
+		$amigos = $_SESSION["amigos"] ?? null;
 		$encontrado=FALSE;
-		
+		if (is_countable($amigos) && count($amigos) > 0){
 		for($i=0;$i<sizeof($amigos);$i++){
-			$otro = $amigos[$i][name];
+			$otro = $amigos[$i][$name] ?? null;
 			if(strcmp($name, $otro)==0){
 				$_SESSION["reg"]=$i;
 				$encontrado=TRUE;
 			}
 		}
-		
+		}
 		if($encontrado==FALSE){			
 			$_SESSION['error']="Amigo no encontrado";
 		}
-		header("Location: /alumnos/principal.php"); //Redireccionamos a principal.php
+		header("Location: /Agenda/principal.php"); //Redireccionamos a principal.php
 		
 	}
 	
@@ -111,7 +114,7 @@ class Controller{
 		$pers->delete_personal($id);
 		$_SESSION['reg']=0;
 		$_SESSION["amigos"] = $pers->get_personal();
-		header("Location: /alumnos/principal.php"); //Redireccionamos a principal.php
+		header("Location: /Agenda/principal.php"); //Redireccionamos a principal.php
 	}
 	
 	function guardar(){
@@ -125,7 +128,7 @@ class Controller{
 		$pers->update_personal($id,$name,$tlf,$email);
 		//Recogemos los amigos (ahora estara el nuevo)
 		$_SESSION["amigos"] = $pers->get_personal();
-		header("Location: /alumnos/principal.php"); //Redireccionamos a principal.php
+		header("Location: /Agenda/principal.php"); //Redireccionamos a principal.php
 	}
 	
 	function salir(){?>

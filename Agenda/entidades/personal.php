@@ -15,11 +15,12 @@ class Personal{
 		$con = new Conectar();
 		$micon = $con->conexion();
 		$sql = "select * from personal;";
-		$res = mysql_query($sql,$micon);
+		$res = $micon->query($sql);
 		
-		while($reg = mysql_fetch_assoc($res)){
-			$this->pers[] = $reg;
-		}
+		 while ($reg = $res->fetch_assoc())
+              {
+				  $this->pers[] = $reg;
+				 } 
 		
 		return $this->pers;
 	}
@@ -28,14 +29,14 @@ class Personal{
 		$con = new Conectar();
 		$micon = $con->conexion();
 		$sql = "insert into personal (name, tlf, email) values('$name','$tlf','$email');";
-		$res = mysql_query($sql,$micon) or die(mysql_error());
+		$res = $micon->query($sql);
 		
 	}
 	public function delete_personal($id){
 		$con = new Conectar();
 		$micon = $con->conexion();
 		$sql = "delete from personal where id='$id';";
-		$res = mysql_query($sql,$micon) or die(mysql_error());
+		$res = $micon->query($sql) or die(mysql_error());
 		
 	}
 	
@@ -43,7 +44,7 @@ class Personal{
 		$con = new Conectar();
 		$micon = $con->conexion();
 		$sql = "update personal set name='$name', tlf='$tlf', email='$email' where id='$id';";
-		$res = mysql_query($sql,$micon) or die(mysql_error());
+		$res = $micon->query($sql) or die(mysql_error());
 		
 	}
 
