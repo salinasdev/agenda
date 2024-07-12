@@ -1,5 +1,8 @@
 {
     "require": {
-        "monolog/monolog": "2.0.*"
+        "monolog/monolog": "2.0.*",
+		"name":"agenda/agenda",
+		"description":"Agenda PHP"
+		
     }
 }
