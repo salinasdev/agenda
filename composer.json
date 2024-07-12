@@ -1,8 +1,9 @@
 {
-    "require": {
-        "monolog/monolog": "2.0.*",
-		"name":"agenda/agenda",
-		"description":"Agenda PHP"
-		
-    }
+    "name": "salinasdev/agenda",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Victor Salinas",
+            "email": "victor.salinas.villarrubia@gmail.com"
+        }
 }
